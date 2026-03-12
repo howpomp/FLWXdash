@@ -8,654 +8,250 @@
 <style>
   :root {
     --blue-dark: #0a1628;
-    --blue-mid: #0d2244;
-    --blue-panel: #102a52;
-    --accent-blue: #1565c0;
-    --tile-blue: #1a3a6e;
-    --tile-red: #c0182a;
-    --tile-red-dark: #8b0e1c;
-    --tile-orange: #d4600a;
-    --tile-green: #1a6b2e;
     --gold: #f5c518;
-    --text-white: #ffffff;
     --text-dim: #aec6e8;
     --border: rgba(100,160,255,0.25);
-    --glow: rgba(21,101,192,0.4);
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { margin:0;padding:0;box-sizing:border-box; }
   body {
     background: var(--blue-dark);
     font-family: 'Barlow', sans-serif;
-    color: var(--text-white);
+    color: #fff;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
     padding: 20px;
-    background-image: radial-gradient(ellipse at 20% 50%, rgba(21,101,192,0.15) 0%, transparent 60%),
-                      radial-gradient(ellipse at 80% 20%, rgba(192,24,42,0.08) 0%, transparent 50%);
+    background-image:
+      radial-gradient(ellipse at 20% 50%,rgba(21,101,192,.15) 0%,transparent 60%),
+      radial-gradient(ellipse at 80% 20%,rgba(192,24,42,.08) 0%,transparent 50%);
   }
 
   /* MASTHEAD */
   .masthead {
-    width: 100%;
-    max-width: 900px;
-    background: linear-gradient(135deg, #0d2244 0%, #1a3a6e 50%, #0d2244 100%);
-    border: 2px solid var(--border);
-    border-bottom: none;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 8px 8px 0 0;
-    position: relative;
-    overflow: hidden;
+    width:100%;max-width:980px;
+    background:linear-gradient(135deg,#0d2244 0%,#1a3a6e 50%,#0d2244 100%);
+    border:2px solid var(--border);border-bottom:none;
+    padding:10px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-radius:8px 8px 0 0;position:relative;overflow:hidden;
   }
-
   .masthead::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), #ff6b35, var(--gold), transparent);
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,transparent,var(--gold),#ff6b35,var(--gold),transparent);
   }
-
   .masthead-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 2rem;
-    letter-spacing: 0.05em;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;
+    letter-spacing:.05em;display:flex;align-items:center;gap:8px;
   }
-
-  .masthead-logo .fl {
-    background: linear-gradient(135deg, #f5c518, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .masthead-logo .wx {
-    color: white;
-  }
-
-  .masthead-logo .now {
-    background: var(--tile-red);
-    color: white;
-    padding: 2px 10px;
-    border-radius: 4px;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    -webkit-text-fill-color: white;
-  }
-
-  .masthead-time {
-    text-align: right;
-  }
-
-  .masthead-time .time-val {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-  }
-
-  .masthead-time .time-label {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
+  .masthead-logo .fl { background:linear-gradient(135deg,#f5c518,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+  .masthead-logo .now { background:#c0182a;color:white;padding:2px 10px;border-radius:4px;font-size:1rem;letter-spacing:.1em;-webkit-text-fill-color:white; }
+  .masthead-right { display:flex;align-items:center;gap:14px; }
   .live-dot {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: var(--tile-red);
-    padding: 3px 10px 3px 6px;
-    border-radius: 3px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    display:inline-flex;align-items:center;gap:5px;background:#c0182a;
+    padding:3px 10px 3px 6px;border-radius:3px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:.15em;
   }
+  .live-dot::before { content:'';width:7px;height:7px;border-radius:50%;background:white;animation:blink 1.2s ease-in-out infinite; }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+  .masthead-time { text-align:right; }
+  .masthead-time .time-val { font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;color:var(--gold); }
+  .masthead-time .time-label { font-size:.7rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em; }
 
-  .live-dot::before {
-    content: '';
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: white;
-    animation: blink 1.2s ease-in-out infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
-  }
-
-  /* MAIN PANEL */
+  /* PANEL */
   .panel {
-    width: 100%;
-    max-width: 900px;
-    background: linear-gradient(180deg, #102244 0%, #0a1a38 100%);
-    border: 2px solid var(--border);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    padding: 14px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 10px;
+    width:100%;max-width:980px;
+    background:linear-gradient(180deg,#102244 0%,#0a1a38 100%);
+    border:2px solid var(--border);border-top:none;
+    border-radius:0 0 8px 8px;padding:14px;
+    display:flex;flex-direction:column;gap:10px;
   }
-
-  /* PANEL HEADER */
   .panel-header {
-    grid-column: 1 / -1;
-    text-align: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    color: white;
-    text-transform: uppercase;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+    text-align:center;
+    font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;
+    letter-spacing:.2em;text-transform:uppercase;
+    padding-bottom:8px;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;gap:12px;
   }
 
-  .panel-header .icon { font-size: 1.2rem; }
+  /* TOP ROW — 5 tiles */
+  .top-row { display:grid;grid-template-columns:repeat(5,1fr);gap:10px; }
 
-  /* TEMP ROW */
-  .temp-row {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
-  }
-
-  /* TILE BASE */
+  /* TILE */
   .tile {
-    border-radius: 6px;
-    padding: 12px 14px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 90px;
+    border-radius:6px;padding:12px 14px;
+    position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
+    min-height:95px;animation:slideUp .4s ease both;
   }
+  .tile::after { content:'';position:absolute;top:0;left:0;right:0;height:2px; }
+  @keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .top-row .tile:nth-child(1){animation-delay:.05s}
+  .top-row .tile:nth-child(2){animation-delay:.10s}
+  .top-row .tile:nth-child(3){animation-delay:.15s}
+  .top-row .tile:nth-child(4){animation-delay:.20s}
+  .top-row .tile:nth-child(5){animation-delay:.25s}
 
-  .tile::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
+  .tile-blue  { background:linear-gradient(135deg,#1565c0,#0d47a1);box-shadow:0 4px 16px rgba(21,101,192,.4); }
+  .tile-blue::after  { background:linear-gradient(90deg,#42a5f5,#1565c0); }
+  .tile-red   { background:linear-gradient(135deg,#c62828,#8b0000);box-shadow:0 4px 16px rgba(198,40,40,.4); }
+  .tile-red::after   { background:linear-gradient(90deg,#ef5350,#c62828); }
+  .tile-teal  { background:linear-gradient(135deg,#00695c,#004d40);box-shadow:0 4px 16px rgba(0,105,92,.35); }
+  .tile-teal::after  { background:linear-gradient(90deg,#26a69a,#00695c); }
+  .tile-wind  { background:linear-gradient(135deg,#1b5e20,#0a3a10);box-shadow:0 4px 16px rgba(27,94,32,.4); }
+  .tile-wind::after  { background:linear-gradient(90deg,#66bb6a,#1b5e20); }
+
+  /* WARNINGS tile */
+  .tile-warn {
+    background:linear-gradient(135deg,#4a148c,#2d0057);
+    box-shadow:0 4px 16px rgba(123,31,162,.45);
+    min-height:95px;padding:10px 12px;
   }
-
-  .tile-blue {
-    background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
-    box-shadow: 0 4px 16px rgba(21,101,192,0.4);
+  .tile-warn::after { background:linear-gradient(90deg,#ce93d8,#7b1fa2); }
+  .warn-label {
+    font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;
+    letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:6px;
   }
-  .tile-blue::after { background: linear-gradient(90deg, #42a5f5, #1565c0); }
-
-  .tile-red {
-    background: linear-gradient(135deg, #c62828 0%, #8b0000 100%);
-    box-shadow: 0 4px 16px rgba(198,40,40,0.4);
+  .warn-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;flex:1; }
+  .warn-item {
+    display:flex;flex-direction:column;align-items:center;
+    background:rgba(0,0,0,.25);border-radius:4px;padding:5px 2px;
   }
-  .tile-red::after { background: linear-gradient(90deg, #ef5350, #c62828); }
+  .warn-count { font-family:'Barlow Condensed',sans-serif;font-size:1.7rem;font-weight:900;line-height:1;color:white; }
+  .warn-count.active { color:#ff5252;text-shadow:0 0 12px rgba(255,82,82,.6); }
+  .warn-type { font-family:'Barlow Condensed',sans-serif;font-size:.5rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);text-align:center;margin-top:2px;line-height:1.2; }
 
-  .tile-orange {
-    background: linear-gradient(135deg, #e65100 0%, #bf360c 100%);
-    box-shadow: 0 4px 16px rgba(230,81,0,0.35);
-  }
-  .tile-orange::after { background: linear-gradient(90deg, #ff9800, #e65100); }
+  .tile-label { font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:4px; }
+  .tile-value { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.6rem;line-height:1;color:white;display:flex;align-items:flex-start;gap:2px; }
+  .tile-value .unit { font-size:1.1rem;font-weight:700;margin-top:5px; }
+  .tile-sublabel { font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.08em;color:rgba(255,255,255,.6);text-transform:uppercase;margin-top:2px; }
 
-  .tile-teal {
-    background: linear-gradient(135deg, #00695c 0%, #004d40 100%);
-    box-shadow: 0 4px 16px rgba(0,105,92,0.35);
-  }
-  .tile-teal::after { background: linear-gradient(90deg, #26a69a, #00695c); }
-
-  .tile-dark {
-    background: linear-gradient(135deg, #1a2e50 0%, #0f1e38 100%);
-    border: 1px solid var(--border);
-  }
-  .tile-dark::after { background: linear-gradient(90deg, #42a5f5, transparent); }
-
-  .tile-warning {
-    background: linear-gradient(135deg, #7b1fa2 0%, #4a148c 100%);
-    box-shadow: 0 4px 16px rgba(123,31,162,0.4);
-  }
-  .tile-warning::after { background: linear-gradient(90deg, #ce93d8, #7b1fa2); }
-
-  .tile-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 4px;
-  }
-
-  .tile-value {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 2.8rem;
-    line-height: 1;
-    color: white;
-    display: flex;
-    align-items: flex-start;
-    gap: 2px;
-  }
-
-  .tile-value .unit {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-top: 4px;
-  }
-
-  .tile-sublabel {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.6);
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-
-  /* LIGHTNING ROW */
-  .lightning-row {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 16px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 16px;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .lightning-row::before {
-    content: '⚡';
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 4rem;
-    opacity: 0.06;
-  }
-
-  .lightning-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .lightning-label .bolt { font-size: 1.3rem; animation: flash 3s ease-in-out infinite; }
-
-  @keyframes flash {
-    0%, 90%, 100% { opacity: 1; }
-    95% { opacity: 0.1; }
-  }
-
-  .lightning-stats {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-
-  .lightning-stat {
-    text-align: center;
-  }
-
-  .lightning-stat .ls-val {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 2rem;
-    color: var(--gold);
-    line-height: 1;
-  }
-
-  .lightning-stat .ls-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-top: 2px;
-  }
-
-  .lightning-divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(255,255,255,0.15);
-  }
-
-  .lightning-total {
-    text-align: center;
-    padding-left: 8px;
-    border-left: 2px solid rgba(245,197,24,0.4);
-  }
-
-  .lightning-total .lt-val {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 2.6rem;
-    color: white;
-    line-height: 1;
-  }
-
-  .lightning-total .lt-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-top: 2px;
-  }
-
-  /* BOTTOM ROW */
-  .bottom-row {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  /* ALERTS TILE */
-  .alerts-tile {
-    background: linear-gradient(135deg, #1a1228 0%, #0f0d20 100%);
-    border: 1px solid rgba(200,150,255,0.3);
-    border-radius: 6px;
-    padding: 12px 14px;
-    min-height: 110px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .alerts-tile::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #ce93d8, #7b1fa2, transparent);
-  }
-
-  .alerts-header {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: #ce93d8;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .alerts-count-badge {
-    background: #7b1fa2;
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 800;
-    padding: 1px 7px;
-    border-radius: 10px;
-    letter-spacing: 0.08em;
-  }
-
-  .alert-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-    padding: 5px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    font-size: 0.75rem;
-    color: var(--text-dim);
-  }
-
-  .alert-item:last-child { border-bottom: none; }
-
-  .alert-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-
-  .dot-red { background: #ef5350; box-shadow: 0 0 6px #ef5350; }
-  .dot-orange { background: #ff9800; box-shadow: 0 0 6px #ff9800; }
-  .dot-yellow { background: #ffeb3b; box-shadow: 0 0 6px #ffeb3b; }
-
-  .alert-text { line-height: 1.3; }
-  .alert-type { font-weight: 600; color: white; font-size: 0.78rem; }
-  .alert-area { color: var(--text-dim); font-size: 0.68rem; }
-
-  .no-alerts {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 70px;
-    color: rgba(255,255,255,0.3);
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-  }
-
-  /* SPC TILE */
-  .spc-tile {
-    background: linear-gradient(135deg, #0d1b2a 0%, #071220 100%);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 14px;
-    min-height: 110px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .spc-tile::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #42a5f5, transparent);
-  }
-
-  .spc-header {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .spc-img-wrap {
-    width: 100%;
-    height: 75px;
-    border-radius: 4px;
-    overflow: hidden;
-    background: #1a2e50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .spc-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: right center;
-  }
-
-  .spc-label-overlay {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    padding: 4px 8px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.7);
-    text-transform: uppercase;
-  }
-
-  /* HUMIDITY / DEW TILE */
+  /* STATE AVERAGES ROW */
   .comfort-row {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, #0f2030 0%, #0a1628 100%);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px;
+    background:linear-gradient(135deg,#0f2030,#0a1628);
+    border:1px solid var(--border);border-radius:6px;
+    padding:10px 16px;display:flex;align-items:center;justify-content:space-around;gap:10px;
+    animation:slideUp .4s .3s ease both;
   }
+  .comfort-item { display:flex;flex-direction:column;align-items:center;text-align:center; }
+  .comfort-icon { font-size:1.4rem;margin-bottom:2px; }
+  .comfort-val { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:white;line-height:1; }
+  .comfort-label { font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-top:2px; }
+  .comfort-divider { width:1px;height:40px;background:var(--border); }
 
-  .comfort-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  /* MID ROW */
+  .mid-row { display:grid;grid-template-columns:1fr 1fr;gap:10px;animation:slideUp .4s .35s ease both; }
+
+  .alerts-tile {
+    background:linear-gradient(135deg,#1a1228,#0f0d20);
+    border:1px solid rgba(200,150,255,.3);border-radius:6px;
+    padding:12px 14px;min-height:130px;position:relative;overflow:hidden;
   }
-
-  .comfort-icon { font-size: 1.4rem; margin-bottom: 2px; }
-
-  .comfort-val {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 1.6rem;
-    color: white;
-    line-height: 1;
+  .alerts-tile::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ce93d8,#7b1fa2,transparent); }
+  .alerts-header {
+    font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;
+    letter-spacing:.15em;color:#ce93d8;text-transform:uppercase;
+    margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;
   }
+  .alerts-count-badge { background:#7b1fa2;color:white;font-size:.65rem;font-weight:800;padding:1px 7px;border-radius:10px;letter-spacing:.08em; }
+  .alert-item { display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.75rem; }
+  .alert-item:last-child { border-bottom:none; }
+  .alert-dot { width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px; }
+  .dot-red    { background:#ef5350;box-shadow:0 0 6px #ef5350; }
+  .dot-orange { background:#ff9800;box-shadow:0 0 6px #ff9800; }
+  .dot-yellow { background:#ffeb3b;box-shadow:0 0 6px #ffeb3b; }
+  .alert-type { font-weight:600;color:white;font-size:.78rem; }
+  .alert-area { color:var(--text-dim);font-size:.68rem; }
+  .no-alerts  { display:flex;align-items:center;justify-content:center;height:70px;color:rgba(255,255,255,.3);font-size:.8rem; }
 
-  .comfort-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-top: 2px;
+  .spc-tile {
+    background:linear-gradient(135deg,#0d1b2a,#071220);
+    border:1px solid var(--border);border-radius:6px;
+    padding:12px 14px;position:relative;overflow:hidden;
   }
+  .spc-tile::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#42a5f5,transparent); }
+  .spc-header { font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.15em;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px; }
+  .spc-img-wrap {
+    width:100%;height:100px;border-radius:4px;overflow:hidden;
+    background:#1a2e50;display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .spc-img-wrap img { width:100%;height:100%;object-fit:cover;object-position:right center; }
+  .spc-label-overlay {
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.7));padding:4px 8px;
+    font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.7);text-transform:uppercase;
+  }
+  .spc-fallback { color:var(--text-dim);font-size:.75rem;text-align:center;padding:12px;display:flex;flex-direction:column;align-items:center;gap:8px;width:100%; }
+  .spc-fallback a {
+    color:#42a5f5;text-decoration:none;font-size:.68rem;
+    border:1px solid rgba(66,165,245,.4);padding:4px 14px;border-radius:3px;
+  }
+  .spc-fallback a:hover { background:rgba(66,165,245,.15); }
 
-  .comfort-divider {
-    width: 1px;
-    height: 40px;
-    background: var(--border);
+  /* AIRPORT SECTION */
+  .airport-section { animation:slideUp .4s .4s ease both; }
+  .section-header {
+    font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);
+    padding:6px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
   }
+  .airport-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
 
-  /* LOADING STATE */
-  .loading-pulse {
-    animation: pulse 1.5s ease-in-out infinite;
-    background: rgba(255,255,255,0.08);
-    border-radius: 4px;
-    height: 1.2em;
-    display: inline-block;
-    width: 80%;
+  .airport-card {
+    background:linear-gradient(135deg,#0f1e38,#091528);
+    border:1px solid var(--border);border-radius:6px;padding:10px 12px;
+    position:relative;overflow:hidden;transition:border-color .2s;
   }
+  .airport-card::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#42a5f5,transparent); }
+  .airport-card.status-vfr   { border-color:rgba(76,175,80,.45); }
+  .airport-card.status-vfr::after   { background:linear-gradient(90deg,#4caf50,transparent); }
+  .airport-card.status-mvfr  { border-color:rgba(33,150,243,.5); }
+  .airport-card.status-mvfr::after  { background:linear-gradient(90deg,#2196f3,transparent); }
+  .airport-card.status-ifr   { border-color:rgba(244,67,54,.5); }
+  .airport-card.status-ifr::after   { background:linear-gradient(90deg,#f44336,transparent); }
+  .airport-card.status-lifr  { border-color:rgba(156,39,176,.55); }
+  .airport-card.status-lifr::after  { background:linear-gradient(90deg,#9c27b0,transparent); }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+  .airport-top { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px; }
+  .airport-icao { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:white;letter-spacing:.05em; }
+  .airport-name { font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:1px; }
+  .status-badge {
+    font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;flex-shrink:0;
   }
+  .badge-vfr  { background:rgba(76,175,80,.2);  color:#81c784;border:1px solid rgba(76,175,80,.4); }
+  .badge-mvfr { background:rgba(33,150,243,.2); color:#64b5f6;border:1px solid rgba(33,150,243,.4); }
+  .badge-ifr  { background:rgba(244,67,54,.2);  color:#e57373;border:1px solid rgba(244,67,54,.4); }
+  .badge-lifr { background:rgba(156,39,176,.2); color:#ce93d8;border:1px solid rgba(156,39,176,.4); }
+  .badge-load { background:rgba(100,160,255,.1);color:#90caf9;border:1px solid var(--border); }
+
+  .airport-wx { display:grid;grid-template-columns:repeat(4,1fr);gap:4px; }
+  .wx-item { display:flex;flex-direction:column;align-items:center; }
+  .wx-val { font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:white;line-height:1; }
+  .wx-lbl { font-family:'Barlow Condensed',sans-serif;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:1px; }
+  .wx-divider { width:1px;height:28px;background:var(--border);align-self:center; }
+  .airport-sky { font-family:'Barlow Condensed',sans-serif;font-size:.68rem;color:rgba(255,255,255,.5);margin-top:5px;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
 
   /* FOOTER */
-  .footer {
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 4px 0;
-  }
-
-  .footer-text {
-    font-size: 0.65rem;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.06em;
-  }
-
+  .footer { width:100%;max-width:980px;display:flex;justify-content:space-between;align-items:center;padding:8px 4px 0; }
+  .footer-text { font-size:.65rem;color:rgba(255,255,255,.25);letter-spacing:.06em; }
   .refresh-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.2s;
+    background:none;border:1px solid var(--border);color:var(--text-dim);
+    font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:4px 12px;border-radius:3px;cursor:pointer;transition:all .2s;
   }
-
-  .refresh-btn:hover {
-    background: var(--tile-blue);
-    color: white;
-    border-color: #42a5f5;
-  }
-
-  .spinning { animation: spin 1s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ENTRY ANIMATION */
-  .tile, .lightning-row, .alerts-tile, .spc-tile, .comfort-row {
-    animation: slideUp 0.4s ease both;
-  }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .temp-row .tile:nth-child(1) { animation-delay: 0.05s; }
-  .temp-row .tile:nth-child(2) { animation-delay: 0.1s; }
-  .temp-row .tile:nth-child(3) { animation-delay: 0.15s; }
-  .temp-row .tile:nth-child(4) { animation-delay: 0.2s; }
-  .lightning-row { animation-delay: 0.25s; }
-  .comfort-row { animation-delay: 0.3s; }
-  .alerts-tile { animation-delay: 0.35s; }
-  .spc-tile { animation-delay: 0.4s; }
-
-  .error-msg {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.35);
-    font-style: italic;
-    margin-top: 4px;
-  }
+  .refresh-btn:hover { background:#1a3a6e;color:white;border-color:#42a5f5; }
+  .error-msg { font-size:.7rem;color:rgba(255,255,255,.35);font-style:italic;margin-top:4px; }
 </style>
 </head>
 <body>
 
-<!-- MASTHEAD -->
 <div class="masthead">
   <div class="masthead-logo">
     <span class="fl">FLORIDA</span>
     <span class="wx">WEATHER</span>
     <span class="now">NOW</span>
   </div>
-  <div style="display:flex; align-items:center; gap:14px;">
+  <div class="masthead-right">
     <span class="live-dot">LIVE</span>
     <div class="masthead-time">
       <div class="time-val" id="clock">--:-- --</div>
@@ -664,17 +260,12 @@
   </div>
 </div>
 
-<!-- MAIN PANEL -->
 <div class="panel">
 
-  <div class="panel-header">
-    <span class="icon">🌴</span>
-    CURRENT CONDITIONS — FLORIDA
-    <span class="icon">🌤</span>
-  </div>
+  <div class="panel-header">🌴 CURRENT CONDITIONS — FLORIDA 🌤</div>
 
-  <!-- TEMP ROW -->
-  <div class="temp-row">
+  <!-- TOP ROW -->
+  <div class="top-row">
     <div class="tile tile-blue">
       <div class="tile-label">❄️ Coolest</div>
       <div class="tile-value" id="cool-val">--<span class="unit">°F</span></div>
@@ -690,38 +281,31 @@
       <div class="tile-value" id="dew-val">--<span class="unit">°F</span></div>
       <div class="tile-sublabel" id="dew-city">Loading...</div>
     </div>
-    <div class="tile tile-warning">
-      <div class="tile-label">⚠️ Warnings</div>
-      <div class="tile-value" id="warn-count">--</div>
-      <div class="tile-sublabel" id="warn-label">FL Active Alerts</div>
+    <div class="tile tile-wind">
+      <div class="tile-label">💨 Highest Wind</div>
+      <div class="tile-value" id="wind-val">--<span class="unit" style="font-size:.85rem;margin-top:8px">mph</span></div>
+      <div class="tile-sublabel" id="wind-city">Loading...</div>
     </div>
-  </div>
-
-  <!-- LIGHTNING ROW -->
-  <div class="lightning-row">
-    <div class="lightning-label">
-      <span class="bolt">⚡</span>
-      LIGHTNING · FLORIDA
-    </div>
-    <div class="lightning-stats">
-      <div class="lightning-stat">
-        <div class="ls-val" id="cg-strikes">--</div>
-        <div class="ls-label">Cloud-to-Ground</div>
-      </div>
-      <div class="lightning-divider"></div>
-      <div class="lightning-stat">
-        <div class="ls-val" id="ic-strikes">--</div>
-        <div class="ls-label">In-Cloud</div>
-      </div>
-      <div class="lightning-divider"></div>
-      <div class="lightning-total">
-        <div class="lt-val" id="total-strikes">--</div>
-        <div class="lt-label">Total Strikes (1hr)</div>
+    <div class="tile tile-warn">
+      <div class="warn-label">⚠️ Severe Warnings</div>
+      <div class="warn-grid">
+        <div class="warn-item">
+          <div class="warn-count" id="tor-count">--</div>
+          <div class="warn-type">Tornado</div>
+        </div>
+        <div class="warn-item">
+          <div class="warn-count" id="svr-count">--</div>
+          <div class="warn-type">Svr T'Storm</div>
+        </div>
+        <div class="warn-item">
+          <div class="warn-count" id="ffw-count">--</div>
+          <div class="warn-type">Flash Flood</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- COMFORT ROW -->
+  <!-- STATE AVERAGES -->
   <div class="comfort-row">
     <div class="comfort-item">
       <div class="comfort-icon">🌡️</div>
@@ -736,12 +320,6 @@
     </div>
     <div class="comfort-divider"></div>
     <div class="comfort-item">
-      <div class="comfort-icon">💨</div>
-      <div class="comfort-val" id="max-wind">-- mph</div>
-      <div class="comfort-label">Highest Wind</div>
-    </div>
-    <div class="comfort-divider"></div>
-    <div class="comfort-item">
       <div class="comfort-icon">☁️</div>
       <div class="comfort-val" id="avg-dew">--°</div>
       <div class="comfort-label">Avg Dew Pt</div>
@@ -752,240 +330,310 @@
       <div class="comfort-val" id="low-vis">-- mi</div>
       <div class="comfort-label">Lowest Vis</div>
     </div>
+    <div class="comfort-divider"></div>
+    <div class="comfort-item">
+      <div class="comfort-icon">🔔</div>
+      <div class="comfort-val" id="total-alerts">--</div>
+      <div class="comfort-label">Total FL Alerts</div>
+    </div>
   </div>
 
-  <!-- BOTTOM ROW -->
-  <div class="bottom-row">
-
-    <!-- ALERTS -->
+  <!-- MID ROW: Alerts + SPC -->
+  <div class="mid-row">
     <div class="alerts-tile">
       <div class="alerts-header">
         Active NWS Alerts — Florida
         <span class="alerts-count-badge" id="alerts-badge">--</span>
       </div>
-      <div id="alerts-list">
-        <div class="no-alerts">Loading alerts...</div>
-      </div>
+      <div id="alerts-list"><div class="no-alerts">Loading alerts...</div></div>
     </div>
 
-    <!-- SPC OUTLOOK -->
     <div class="spc-tile">
       <div class="spc-header">SPC Day 1 Severe Outlook</div>
       <div class="spc-img-wrap">
-        <img id="spc-img"
-          src="https://www.spc.noaa.gov/products/outlook/day1otlk_1300.gif"
-          alt="SPC Day 1 Outlook"
-          onerror="this.onerror=null; this.src='https://www.spc.noaa.gov/products/outlook/day1otlk.gif'">
+        <img id="spc-img" src="" alt="SPC Day 1 Outlook" style="display:none">
+        <div id="spc-fallback" class="spc-fallback" style="display:none">
+          <span>⚠️ Image blocked by browser security policy</span>
+          <a href="https://www.spc.noaa.gov/products/outlook/" target="_blank" rel="noopener">View Current SPC Outlook →</a>
+        </div>
         <div class="spc-label-overlay">SPC · NOAA — Day 1 Convective Outlook</div>
       </div>
     </div>
+  </div>
 
+  <!-- AIRPORT SECTION -->
+  <div class="airport-section">
+    <div class="section-header">
+      ✈️ &nbsp;Florida Airport Conditions
+    </div>
+    <div class="airport-grid" id="airport-grid"></div>
   </div>
 
 </div>
 
 <div class="footer">
-  <span class="footer-text">Data: NWS/NOAA APIs · Updates every 5 minutes</span>
+  <span class="footer-text">Data: NWS/NOAA APIs · Auto-refresh every 5 min</span>
   <button class="refresh-btn" onclick="refreshAll()" id="refresh-btn">↻ Refresh</button>
 </div>
 
 <script>
-// ─── CLOCK ───────────────────────────────────────────────────────────────────
-function updateClock() {
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'America/New_York' });
-  const dateStr = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'America/New_York' });
-  document.getElementById('clock').textContent = timeStr + ' ET';
-  document.getElementById('dateline').textContent = dateStr;
+// ── CLOCK ─────────────────────────────────────────────────────────────────
+function updateClock(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:'America/New_York'})+' ET';
+  document.getElementById('dateline').textContent=
+    n.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});
 }
-updateClock();
-setInterval(updateClock, 1000);
+updateClock(); setInterval(updateClock,1000);
 
-// ─── FLORIDA METAR STATIONS ──────────────────────────────────────────────────
-const FL_STATIONS = [
-  { id: 'KMIA', name: 'Miami' },
-  { id: 'KFLL', name: 'Ft Lauderdale' },
-  { id: 'KPBI', name: 'W. Palm Beach' },
-  { id: 'KORL', name: 'Orlando' },
-  { id: 'KTPA', name: 'Tampa' },
-  { id: 'KJAX', name: 'Jacksonville' },
-  { id: 'KPNS', name: 'Pensacola' },
-  { id: 'KTLH', name: 'Tallahassee' },
-  { id: 'KRSW', name: 'Ft Myers' },
-  { id: 'KEYW', name: 'Key West' },
-  { id: 'KSFB', name: 'Sanford' },
-  { id: 'KPIE', name: 'St Petersburg' },
+// ── HELPERS ───────────────────────────────────────────────────────────────
+const H={'User-Agent':'FloridaWxDashboard/1.0','Accept':'application/geo+json'};
+const cToF  =c =>c !=null?Math.round(c*9/5+32):null;
+const msToMph=ms=>ms!=null?Math.round(ms*2.237):null;
+const mToMi =m =>m !=null?Math.round(m/1609.34*10)/10:null;
+
+async function fetchObs(id){
+  try{
+    const r=await fetch(`https://api.weather.gov/stations/${id}/observations/latest`,{headers:H});
+    if(!r.ok)return null;
+    return(await r.json()).properties;
+  }catch{return null;}
+}
+
+// ── FL STATIONS ───────────────────────────────────────────────────────────
+const FL_STATIONS=[
+  {id:'KMIA',name:'Miami'},{id:'KFLL',name:'Ft Lauderdale'},
+  {id:'KPBI',name:'W. Palm Beach'},{id:'KORL',name:'Orlando'},
+  {id:'KTPA',name:'Tampa'},{id:'KJAX',name:'Jacksonville'},
+  {id:'KPNS',name:'Pensacola'},{id:'KTLH',name:'Tallahassee'},
+  {id:'KRSW',name:'Ft Myers'},{id:'KEYW',name:'Key West'},
+  {id:'KSFB',name:'Sanford'},{id:'KPIE',name:'St Pete'},
 ];
 
-// ─── FETCH OBSERVATIONS ──────────────────────────────────────────────────────
-async function fetchObs(station) {
-  try {
-    const r = await fetch(
-      `https://api.weather.gov/stations/${station}/observations/latest`,
-      { headers: { 'User-Agent': 'FloridaWxDashboard/1.0 (contact@example.com)', 'Accept': 'application/geo+json' } }
-    );
-    if (!r.ok) return null;
-    const d = await r.json();
-    return d.properties;
-  } catch { return null; }
+async function loadObservations(){
+  const rows=await Promise.all(FL_STATIONS.map(s=>fetchObs(s.id).then(obs=>({...s,obs}))));
+  const valid=rows.filter(r=>r.obs?.temperature?.value!=null);
+  if(!valid.length)return;
+
+  valid.sort((a,b)=>a.obs.temperature.value-b.obs.temperature.value);
+  const cool=valid[0],hot=valid[valid.length-1];
+  document.getElementById('cool-val').innerHTML=cToF(cool.obs.temperature.value)+'<span class="unit">°F</span>';
+  document.getElementById('cool-city').textContent=cool.name;
+  document.getElementById('hot-val').innerHTML=cToF(hot.obs.temperature.value)+'<span class="unit">°F</span>';
+  document.getElementById('hot-city').textContent=hot.name;
+
+  const temps=valid.map(r=>cToF(r.obs.temperature.value));
+  document.getElementById('avg-temp').textContent=Math.round(temps.reduce((a,b)=>a+b)/temps.length)+'°';
+
+  const humids=valid.filter(r=>r.obs.relativeHumidity?.value!=null).map(r=>r.obs.relativeHumidity.value);
+  if(humids.length)document.getElementById('avg-humidity').textContent=Math.round(humids.reduce((a,b)=>a+b)/humids.length)+'%';
+
+  const winds=valid.filter(r=>r.obs.windSpeed?.value!=null).map(r=>({val:msToMph(r.obs.windSpeed.value),name:r.name}));
+  if(winds.length){
+    winds.sort((a,b)=>b.val-a.val);
+    document.getElementById('wind-val').innerHTML=winds[0].val+'<span class="unit" style="font-size:.85rem;margin-top:8px">mph</span>';
+    document.getElementById('wind-city').textContent=winds[0].name;
+  }
+
+  const dews=valid.filter(r=>r.obs.dewpoint?.value!=null).map(r=>({val:cToF(r.obs.dewpoint.value),name:r.name}));
+  if(dews.length){
+    dews.sort((a,b)=>b.val-a.val);
+    document.getElementById('dew-val').innerHTML=dews[0].val+'<span class="unit">°F</span>';
+    document.getElementById('dew-city').textContent=dews[0].name;
+    document.getElementById('avg-dew').textContent=Math.round(dews.reduce((a,b)=>a+b.val,0)/dews.length)+'°';
+  }
+
+  const vis=valid.filter(r=>r.obs.visibility?.value!=null).map(r=>({val:mToMi(r.obs.visibility.value),name:r.name}));
+  if(vis.length){vis.sort((a,b)=>a.val-b.val);document.getElementById('low-vis').textContent=vis[0].val+' mi';}
 }
 
-function cToF(c) { return c != null ? Math.round(c * 9/5 + 32) : null; }
-function msToMph(ms) { return ms != null ? Math.round(ms * 2.237) : null; }
-function mToMi(m) { return m != null ? Math.round(m / 1609.34 * 10) / 10 : null; }
+// ── NWS ALERTS ────────────────────────────────────────────────────────────
+async function loadAlerts(){
+  try{
+    const r=await fetch('https://api.weather.gov/alerts/active?area=FL',{headers:H});
+    const d=await r.json();
+    const features=d.features||[];
 
-async function loadObservations() {
-  const results = await Promise.all(FL_STATIONS.map(s => fetchObs(s.id).then(obs => ({ ...s, obs }))));
-  const valid = results.filter(r => r.obs && r.obs.temperature && r.obs.temperature.value != null);
+    const count=kw=>features.filter(f=>f.properties.event?.toLowerCase().includes(kw)).length;
+    const setWarn=(id,n)=>{
+      const el=document.getElementById(id);
+      el.textContent=n;
+      el.classList.toggle('active',n>0);
+    };
+    setWarn('tor-count',count('tornado warning'));
+    setWarn('svr-count',count('severe thunderstorm warning'));
+    setWarn('ffw-count',count('flash flood warning'));
 
-  if (valid.length === 0) {
-    document.getElementById('cool-city').textContent = 'Data unavailable';
-    document.getElementById('hot-city').textContent = 'Data unavailable';
-    return;
-  }
+    document.getElementById('total-alerts').textContent=features.length;
+    document.getElementById('alerts-badge').textContent=features.length;
 
-  // Sort by temp
-  valid.sort((a, b) => a.obs.temperature.value - b.obs.temperature.value);
+    const listEl=document.getElementById('alerts-list');
+    if(!features.length){listEl.innerHTML='<div class="no-alerts">✅ No active alerts for Florida</div>';return;}
 
-  const coolest = valid[0];
-  const hottest = valid[valid.length - 1];
+    const sevOrder={Extreme:0,Severe:1,Moderate:2,Minor:3,Unknown:4};
+    features.sort((a,b)=>(sevOrder[a.properties.severity]||4)-(sevOrder[b.properties.severity]||4));
 
-  document.getElementById('cool-val').innerHTML = cToF(coolest.obs.temperature.value) + '<span class="unit">°F</span>';
-  document.getElementById('cool-city').textContent = coolest.name;
-
-  document.getElementById('hot-val').innerHTML = cToF(hottest.obs.temperature.value) + '<span class="unit">°F</span>';
-  document.getElementById('hot-city').textContent = hottest.name;
-
-  // Averages
-  const temps = valid.map(r => cToF(r.obs.temperature.value));
-  const avgTemp = Math.round(temps.reduce((a,b) => a+b, 0) / temps.length);
-  document.getElementById('avg-temp').textContent = avgTemp + '°';
-
-  const humids = valid.filter(r => r.obs.relativeHumidity?.value != null).map(r => r.obs.relativeHumidity.value);
-  if (humids.length) {
-    const avgHum = Math.round(humids.reduce((a,b) => a+b, 0) / humids.length);
-    document.getElementById('avg-humidity').textContent = avgHum + '%';
-  }
-
-  // Max wind
-  const winds = valid.filter(r => r.obs.windSpeed?.value != null).map(r => ({ val: msToMph(r.obs.windSpeed.value), name: r.name }));
-  if (winds.length) {
-    winds.sort((a,b) => b.val - a.val);
-    document.getElementById('max-wind').textContent = winds[0].val + ' mph';
-  }
-
-  // Dew point
-  const dews = valid.filter(r => r.obs.dewpoint?.value != null).map(r => ({ val: cToF(r.obs.dewpoint.value), name: r.name }));
-  if (dews.length) {
-    dews.sort((a,b) => b.val - a.val);
-    document.getElementById('dew-val').innerHTML = dews[0].val + '<span class="unit">°F</span>';
-    document.getElementById('dew-city').textContent = dews[0].name;
-    const avgDew = Math.round(dews.reduce((a,b) => a + b.val, 0) / dews.length);
-    document.getElementById('avg-dew').textContent = avgDew + '°';
-  }
-
-  // Visibility
-  const vis = valid.filter(r => r.obs.visibility?.value != null).map(r => ({ val: mToMi(r.obs.visibility.value), name: r.name }));
-  if (vis.length) {
-    vis.sort((a,b) => a.val - b.val);
-    document.getElementById('low-vis').textContent = vis[0].val + ' mi';
+    listEl.innerHTML=features.slice(0,5).map(f=>{
+      const p=f.properties;
+      const dc=p.severity==='Extreme'?'dot-red':p.severity==='Severe'?'dot-orange':'dot-yellow';
+      const area=p.areaDesc?p.areaDesc.split(';')[0].trim():'';
+      return`<div class="alert-item"><div class="alert-dot ${dc}"></div><div><div class="alert-type">${p.event}</div><div class="alert-area">${area}</div></div></div>`;
+    }).join('');
+    if(features.length>5)listEl.innerHTML+=`<div class="error-msg">+ ${features.length-5} more alerts</div>`;
+  }catch{
+    document.getElementById('alerts-list').innerHTML='<div class="no-alerts">Unable to load alerts</div>';
   }
 }
 
-// ─── NWS ALERTS ─────────────────────────────────────────────────────────────
-async function loadAlerts() {
-  try {
-    const r = await fetch('https://api.weather.gov/alerts/active?area=FL', {
-      headers: { 'User-Agent': 'FloridaWxDashboard/1.0', 'Accept': 'application/geo+json' }
-    });
-    const d = await r.json();
-    const features = d.features || [];
+// ── SPC IMAGE ─────────────────────────────────────────────────────────────
+// SPC .gif files are often blocked by CORS headers. We try to load them;
+// if the browser blocks the image, we show a clickable fallback link.
+function loadSPC(){
+  const img=document.getElementById('spc-img');
+  const fallback=document.getElementById('spc-fallback');
+  const utcH=new Date().getUTCHours();
+  const times=utcH>=20?['2000','1630','1300','0100']:utcH>=16?['1630','1300','0100','2000']:utcH>=13?['1300','0100','2000','1630']:['0100','2000','1630','1300'];
+  let idx=0;
+  img.style.display='block';
+  fallback.style.display='none';
+  const tryNext=()=>{
+    if(idx>=times.length){img.style.display='none';fallback.style.display='flex';return;}
+    img.src=`https://www.spc.noaa.gov/products/outlook/day1otlk_${times[idx]}.gif?t=${Date.now()}`;
+    idx++;
+  };
+  img.onerror=()=>tryNext();
+  img.onload=()=>{fallback.style.display='none';img.style.display='block';};
+  tryNext();
+}
 
-    // Update warnings tile
-    const warnings = features.filter(f => f.properties.severity === 'Extreme' || f.properties.severity === 'Severe' || f.properties.event?.toLowerCase().includes('warning'));
-    document.getElementById('warn-count').textContent = warnings.length || '0';
-    document.getElementById('warn-label').textContent = features.length + ' Total FL Alerts';
+// ── AIRPORTS ──────────────────────────────────────────────────────────────
+const AIRPORTS=[
+  {id:'KFLL',label:'FLL',name:'Ft Lauderdale Intl'},
+  {id:'KMCO',label:'MCO',name:'Orlando Intl'},
+  {id:'KMIA',label:'MIA',name:'Miami Intl'},
+  {id:'KTPA',label:'TPA',name:'Tampa Intl'},
+  {id:'KEYW',label:'EYW',name:'Key West Intl'},
+  {id:'KJAX',label:'JAX',name:'Jacksonville Intl'},
+  {id:'KTLH',label:'TLH',name:'Tallahassee Intl'},
+  {id:'KRSW',label:'RSW',name:'Ft Myers Intl'},
+  {id:'KPNS',label:'PNS',name:'Pensacola Intl'},
+];
 
-    const badge = document.getElementById('alerts-badge');
-    badge.textContent = features.length;
+function getFlightCat(obs){
+  const vis=obs.visibility?.value!=null?mToMi(obs.visibility.value):null;
+  let ceil=null;
+  for(const s of(obs.skyConditions||[])){
+    if((s.skyCover==='OVC'||s.skyCover==='BKN')&&s.cloudBase?.value!=null){
+      const ft=Math.round(s.cloudBase.value*3.281);
+      if(ceil===null||ft<ceil)ceil=ft;
+    }
+  }
+  // also try raw message
+  if(ceil===null&&obs.rawMessage){
+    const m=obs.rawMessage.match(/(OVC|BKN)(\d{3})/);
+    if(m)ceil=parseInt(m[2])*100;
+  }
+  if(vis===null&&ceil===null)return null;
+  if((ceil!==null&&ceil<500)||(vis!==null&&vis<1))return'LIFR';
+  if((ceil!==null&&ceil<1000)||(vis!==null&&vis<3))return'IFR';
+  if((ceil!==null&&ceil<3000)||(vis!==null&&vis<5))return'MVFR';
+  return'VFR';
+}
 
-    const listEl = document.getElementById('alerts-list');
-    if (features.length === 0) {
-      listEl.innerHTML = '<div class="no-alerts">✅ No active alerts for Florida</div>';
+function getSkyText(obs){
+  const sky=obs.skyConditions||[];
+  if(sky.length){
+    const order=['OVC','BKN','SCT','FEW','SKC','CLR'];
+    let best=sky[0];
+    for(const s of sky)if(order.indexOf(s.skyCover)<order.indexOf(best.skyCover))best=s;
+    const lbl={OVC:'Overcast',BKN:'Broken',SCT:'Scattered',FEW:'Few Clouds',SKC:'Clear',CLR:'Clear'}[best.skyCover]||best.skyCover;
+    const ft=best.cloudBase?.value!=null?Math.round(best.cloudBase.value*3.281/100)*100:null;
+    return ft?`${lbl} ${ft.toLocaleString()} ft`:lbl;
+  }
+  if(obs.rawMessage){
+    const m=obs.rawMessage.match(/(OVC|BKN|SCT|FEW)(\d{3})/);
+    if(m){const lbl={OVC:'Overcast',BKN:'Broken',SCT:'Scattered',FEW:'Few'}[m[1]]||m[1];return`${lbl} ${(parseInt(m[2])*100).toLocaleString()} ft`;}
+    if(/\bSKC\b|\bCLR\b/.test(obs.rawMessage))return'Clear';
+  }
+  return'Sky N/A';
+}
+
+function renderAirportCards(){
+  document.getElementById('airport-grid').innerHTML=AIRPORTS.map(a=>`
+    <div class="airport-card" id="apt-${a.id}">
+      <div class="airport-top">
+        <div><div class="airport-icao">${a.label}</div><div class="airport-name">${a.name}</div></div>
+        <span class="status-badge badge-load">Loading</span>
+      </div>
+      <div class="airport-wx">
+        <div class="wx-item"><div class="wx-val">--</div><div class="wx-lbl">Temp</div></div>
+        <div class="wx-divider"></div>
+        <div class="wx-item"><div class="wx-val">--</div><div class="wx-lbl">Wind</div></div>
+        <div class="wx-divider"></div>
+        <div class="wx-item"><div class="wx-val">--</div><div class="wx-lbl">Vis</div></div>
+        <div class="wx-divider"></div>
+        <div class="wx-item"><div class="wx-val">--</div><div class="wx-lbl">Dew Pt</div></div>
+      </div>
+      <div class="airport-sky">Loading...</div>
+    </div>`).join('');
+}
+
+async function loadAirports(){
+  renderAirportCards();
+  await Promise.all(AIRPORTS.map(async a=>{
+    const obs=await fetchObs(a.id);
+    const card=document.getElementById(`apt-${a.id}`);
+    if(!card)return;
+    if(!obs){
+      card.querySelector('.status-badge').textContent='N/A';
+      card.querySelector('.airport-sky').textContent='Data unavailable';
       return;
     }
+    const temp  =obs.temperature?.value!=null?cToF(obs.temperature.value)+'°F':'--';
+    const windS =obs.windSpeed?.value!=null?msToMph(obs.windSpeed.value):null;
+    const windStr=windS!=null?windS+' mph':'--';
+    const visVal=obs.visibility?.value!=null?mToMi(obs.visibility.value):null;
+    const visStr=visVal!=null?visVal+' mi':'--';
+    const dew   =obs.dewpoint?.value!=null?cToF(obs.dewpoint.value)+'°F':'--';
+    const sky   =getSkyText(obs);
+    const cat   =getFlightCat(obs);
 
-    // Show top 4 alerts
-    const topAlerts = features.slice(0, 4);
-    listEl.innerHTML = topAlerts.map(f => {
-      const p = f.properties;
-      const sev = p.severity;
-      const dotClass = sev === 'Extreme' ? 'dot-red' : sev === 'Severe' ? 'dot-orange' : 'dot-yellow';
-      const area = p.areaDesc ? p.areaDesc.split(';')[0].trim() : '';
-      return `<div class="alert-item">
-        <div class="alert-dot ${dotClass}"></div>
-        <div class="alert-text">
-          <div class="alert-type">${p.event}</div>
-          <div class="alert-area">${area}</div>
-        </div>
-      </div>`;
-    }).join('');
+    const catMap={VFR:'status-vfr',MVFR:'status-mvfr',IFR:'status-ifr',LIFR:'status-lifr'};
+    const badgeMap={VFR:'badge-vfr',MVFR:'badge-mvfr',IFR:'badge-ifr',LIFR:'badge-lifr'};
+    card.className='airport-card '+(cat?catMap[cat]:'');
 
-    if (features.length > 4) {
-      listEl.innerHTML += `<div class="error-msg">+ ${features.length - 4} more alerts</div>`;
-    }
+    const badge=card.querySelector('.status-badge');
+    if(cat){badge.textContent=cat;badge.className='status-badge '+(badgeMap[cat]||'badge-load');}
+    else{badge.textContent='OBS';badge.className='status-badge badge-load';}
 
-  } catch(e) {
-    document.getElementById('alerts-list').innerHTML = '<div class="no-alerts">Unable to load alerts</div>';
-  }
+    card.querySelector('.airport-wx').innerHTML=`
+      <div class="wx-item"><div class="wx-val">${temp}</div><div class="wx-lbl">Temp</div></div>
+      <div class="wx-divider"></div>
+      <div class="wx-item"><div class="wx-val">${windStr}</div><div class="wx-lbl">Wind</div></div>
+      <div class="wx-divider"></div>
+      <div class="wx-item"><div class="wx-val">${visStr}</div><div class="wx-lbl">Vis</div></div>
+      <div class="wx-divider"></div>
+      <div class="wx-item"><div class="wx-val">${dew}</div><div class="wx-lbl">Dew Pt</div></div>`;
+    card.querySelector('.airport-sky').textContent=sky;
+  }));
 }
 
-// ─── LIGHTNING (simulated - no free API; shows placeholder with note) ────────
-function loadLightning() {
-  // Lightning APIs (Vaisala/Earth Networks) require subscriptions.
-  // Displaying "--" with label to indicate this is a premium data source.
-  document.getElementById('cg-strikes').textContent = '--';
-  document.getElementById('ic-strikes').textContent = '--';
-  document.getElementById('total-strikes').textContent = '--';
-  // If you integrate a lightning API key, update these values here.
-}
-
-// ─── SPC IMAGE - try multiple timestamps ─────────────────────────────────────
-function loadSPC() {
-  const img = document.getElementById('spc-img');
-  const now = new Date();
-  const h = now.getUTCHours();
-  // SPC updates at 0100, 1300, 1630, 2000 UTC
-  const times = ['2000', '1630', '1300', '0100'];
-  let idx = 0;
-  img.onerror = () => {
-    idx++;
-    if (idx < times.length) {
-      img.src = `https://www.spc.noaa.gov/products/outlook/day1otlk_${times[idx]}.gif`;
-    } else {
-      img.src = 'https://www.spc.noaa.gov/products/outlook/day1otlk.gif';
-    }
-  };
-}
-
-// ─── REFRESH ─────────────────────────────────────────────────────────────────
-async function refreshAll() {
-  const btn = document.getElementById('refresh-btn');
-  btn.textContent = '↻ Refreshing...';
-  btn.disabled = true;
-  await Promise.all([loadObservations(), loadAlerts()]);
-  loadLightning();
+// ── REFRESH ───────────────────────────────────────────────────────────────
+async function refreshAll(){
+  const btn=document.getElementById('refresh-btn');
+  btn.textContent='↻ Refreshing...';btn.disabled=true;
+  await Promise.all([loadObservations(),loadAlerts(),loadAirports()]);
   loadSPC();
-  btn.textContent = '↻ Refresh';
-  btn.disabled = false;
+  btn.textContent='↻ Refresh';btn.disabled=false;
 }
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────────────────
 loadObservations();
 loadAlerts();
-loadLightning();
+loadAirports();
 loadSPC();
-setInterval(refreshAll, 5 * 60 * 1000); // auto-refresh every 5 min
+setInterval(refreshAll,5*60*1000);
 </script>
 </body>
 </html>
